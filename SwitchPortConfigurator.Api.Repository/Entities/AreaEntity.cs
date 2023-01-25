@@ -1,11 +1,9 @@
 ﻿namespace SwitchPortConfigurator.Api.Repository.Entities
 {
-    public class PortEntity
+    public class AreaEntity
     {
         public int Id { get; set; }
 
-        public int Number { get; set; }
-
-        public int SwithId { get; set; }
+        public string Name { get; set; }
     }
 }
