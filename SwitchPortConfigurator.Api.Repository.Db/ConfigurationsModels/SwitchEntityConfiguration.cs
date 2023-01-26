@@ -9,8 +9,9 @@ namespace SwitchPortConfigurator.Api.Repository.Db.ConfigurationsModels
         public void Configure(EntityTypeBuilder<SwitchEntity> builder)
         {
             // need Constarins for IpAdress
-            builder.ToTable(builder => { 
-                builder.HasCheckConstraint("MacAddress", "MacAddress ~ '^([A-F0-9]{2}-){5}([A-F0-9]{2})$'"); 
+            builder.ToTable(builder => {
+                builder.HasCheckConstraint("MacAddress", "MacAddress ~ '^([A-F0-9]{2}-){5}([A-F0-9]{2})$'");
+                builder.HasCheckConstraint("IPAddress", @"IPAddress ~ '^((25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)$'");
             });
 
             builder.ToTable(builder => builder.HasCheckConstraint("CountPorts", "CountPorts > 0"));
