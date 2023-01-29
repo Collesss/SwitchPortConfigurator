@@ -2,7 +2,7 @@
 
 namespace SwitchPortConfigurator.Api.Repository.Interfaces
 {
-    public interface IManufacturerRepository : IRepository<ManufacturerEntity, int>
+    public interface IAreaRepository : IRepository<AreaEntity, int>
     {
     }
 }

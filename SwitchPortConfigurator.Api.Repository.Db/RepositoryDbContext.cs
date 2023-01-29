@@ -19,7 +19,7 @@ namespace SwitchPortConfigurator.Api.Repository.Db
 
         public RepositoryDbContext(DbContextOptions<RepositoryDbContext> options) : base(options)
         {
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
