@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using EntityFramework.Exceptions.Common;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SwitchPortConfigurator.Api.Repository.Exceptions;
@@ -45,7 +46,7 @@ namespace SwitchPortConfigurator.Api.Repository.Db.Implementations
                 _logger.LogWarning(e, "Added entity: @{TEntity}, canceled.", entity);
                 throw;
             }
-            catch(DbUpdateException e)
+            catch (DbUpdateException e)
             {
                 _logger.LogWarning(e, "Error add entity: @{TEntity}.", entity);
 
