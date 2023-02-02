@@ -12,6 +12,7 @@ namespace SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.Interfaces
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">Argument null exception.</exception>
         /// <exception cref="Exceptions.ErrorHandlerDbException">Not handled exception.</exception>
+        /// <exception cref="ArgumentNullException">Throw if dbUpdateException is null</exception>
         DbError GetInfoAboutError(DbUpdateException dbUpdateException);
     }
 }
