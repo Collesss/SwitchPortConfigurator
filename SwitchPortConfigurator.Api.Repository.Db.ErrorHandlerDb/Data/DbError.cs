@@ -2,13 +2,13 @@
 {
     public class DbError
     {
-        public int ErrorCode { get; }
+        public DbErrorCode ErrorCode { get; }
 
         public string Table { get; }
 
         public string Fields { get; }
 
-        public DbError(int errorCode, string table, string fields) 
+        public DbError(DbErrorCode errorCode, string table, string fields) 
         {
             ErrorCode = errorCode;
             Table = table;

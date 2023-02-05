@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchPortConfigurator.Api.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb", "SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb\SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.csproj", "{25BF891E-2D2D-4657-9B44-7F2D73D415FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler", "SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler\SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler.csproj", "{7D012408-1EE0-472F-B2A4-910078C8A195}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler", "SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler\SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler.csproj", "{7D012408-1EE0-472F-B2A4-910078C8A195}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.PgSqlErrorHandler", "SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.PgSqlErrorHandler\SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.PgSqlErrorHandler.csproj", "{E32C90C6-841B-4F22-A404-9134AAB041BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{7D012408-1EE0-472F-B2A4-910078C8A195}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D012408-1EE0-472F-B2A4-910078C8A195}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D012408-1EE0-472F-B2A4-910078C8A195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E32C90C6-841B-4F22-A404-9134AAB041BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E32C90C6-841B-4F22-A404-9134AAB041BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E32C90C6-841B-4F22-A404-9134AAB041BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E32C90C6-841B-4F22-A404-9134AAB041BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

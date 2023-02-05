@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using SwitchPortConfigurator.Api.AutoMapperProfiles;
 using SwitchPortConfigurator.Api.Repository.Db;
+using SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.Interfaces;
+using SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler.Implementations;
 using SwitchPortConfigurator.Api.Repository.Db.Implementations;
 using SwitchPortConfigurator.Api.Repository.Interfaces;
 
@@ -21,7 +23,8 @@ namespace SwitchPortConfigurator.Api
             builder.Services.AddAutoMapper(cfg => cfg.AddProfile<RepositoryDtoProfile>());
 
             builder.Services.AddDbContext<RepositoryDbContext>(opts => 
-                opts.UseSqlite(builder.Configuration.GetConnectionString("Default")));
+                opts.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+            builder.Services.AddSingleton<IErrorHandlerDb, ErrorHandlerDb>();
             builder.Services.AddScoped<IAreaRepository, AreaRepository>();
             builder.Services.AddScoped<ILocationRepository, LocationRepository>();
             builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();

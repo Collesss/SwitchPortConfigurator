@@ -8,7 +8,7 @@ namespace SwitchPortConfigurator.Api.Repository.Db.ConfigurationsModels
     {
         public void Configure(EntityTypeBuilder<ModelEntity> builder)
         {
-            builder.ToTable(builder => builder.HasCheckConstraint("CountPorts", "CountPorts > 0"));
+            builder.ToTable(builder => builder.HasCheckConstraint("CK_Models_CountPorts", "\"CountPorts\" > 0"));
 
             builder.HasKey(mod => mod.Id);
 

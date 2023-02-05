@@ -1,10 +1,9 @@
-﻿using EntityFramework.Exceptions.Common;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.Data;
+using SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.Interfaces;
 using SwitchPortConfigurator.Api.Repository.Exceptions;
 using SwitchPortConfigurator.Api.Repository.Interfaces;
-using System.Text.RegularExpressions;
 
 namespace SwitchPortConfigurator.Api.Repository.Db.Implementations
 {
@@ -13,11 +12,13 @@ namespace SwitchPortConfigurator.Api.Repository.Db.Implementations
         where EDbContext : DbContext
     {
         private readonly ILogger<Repository<TEntity, VId, EDbContext>> _logger;
+        protected readonly IErrorHandlerDb _errorHandlerDb;
         protected readonly EDbContext _dbContext;
 
-        public Repository(ILogger<Repository<TEntity, VId, EDbContext>> logger, EDbContext dbContext)
+        public Repository(ILogger<Repository<TEntity, VId, EDbContext>> logger, IErrorHandlerDb errorHandlerDb, EDbContext dbContext)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _errorHandlerDb = errorHandlerDb ?? throw new ArgumentNullException(nameof(errorHandlerDb));
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
@@ -50,19 +51,20 @@ namespace SwitchPortConfigurator.Api.Repository.Db.Implementations
             {
                 _logger.LogWarning(e, "Error add entity: @{TEntity}.", entity);
 
-                if(e.InnerException is SqliteException sqliteEx)
+                DbError dbError;
+
+                try
                 {
-                    throw (errorCode: sqliteEx.SqliteErrorCode, extendedErrorCode: sqliteEx.SqliteExtendedErrorCode) switch
-                        {
-                            (19, 2067) error => new RepositoryException(sqliteEx.Message, e, 
-                                Regex.Match(sqliteEx.Message, @"(?<table>\w+)\.(?<field>\w+)").Groups["table"].Value,
-                                Regex.Match(sqliteEx.Message, @"(?<table>\w+)\.(?<field>\w+)").Groups["field"].Value,
-                                error.errorCode*error.extendedErrorCode),
-                            _ => new RepositoryException("Unexcepted error added.", e)
-                        };
+                    dbError = _errorHandlerDb.GetInfoAboutError(e);
+                }
+                catch(Exception eDbError)
+                {
+                    _logger.LogError(eDbError, "Error Handling excetpion Db.");
+
+                    throw new RepositoryException("Error add entity.", e);
                 }
 
-                throw new RepositoryException("Error add entity.", e);
+                throw new RepositoryException("Error add entity.", e, dbError.Table, dbError.Fields, (int)dbError.ErrorCode);
             }
             catch(Exception e)
             {

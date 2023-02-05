@@ -10,11 +10,13 @@
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SwitchPortConfigurator.Api.Dto\SwitchPortConfigurator.Api.Dto.csproj" />
+    <ProjectReference Include="..\SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler\SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler.csproj" />
     <ProjectReference Include="..\SwitchPortConfigurator.Api.Repository.Db\SwitchPortConfigurator.Api.Repository.Db.csproj" />
     <ProjectReference Include="..\SwitchPortConfigurator.Api.Repository\SwitchPortConfigurator.Api.Repository.csproj" />
   </ItemGroup>

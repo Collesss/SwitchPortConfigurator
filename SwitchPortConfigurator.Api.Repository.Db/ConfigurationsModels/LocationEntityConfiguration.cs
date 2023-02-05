@@ -8,7 +8,7 @@ namespace SwitchPortConfigurator.Api.Repository.Db.ConfigurationsModels
     {
         public void Configure(EntityTypeBuilder<LocationEntity> builder)
         {
-            builder.ToTable(builder => builder.HasCheckConstraint("Cabinet", "Cabinet > 0"));
+            builder.ToTable(builder => builder.HasCheckConstraint("CK_Locations_Cabinet", "\"Cabinet\" > 0"));
 
             builder.HasKey(loc => loc.Id);
             //builder.HasCheckConstraint("Cabinet", "Cabinet > 0");

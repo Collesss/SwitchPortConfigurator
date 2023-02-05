@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SwitchPortConfigurator.Api.Dto.Area.Request;
 using SwitchPortConfigurator.Api.Dto.Area.Response;
@@ -28,5 +27,9 @@ namespace SwitchPortConfigurator.Api.Controllers
             Ok(_mapper.Map<AreaEntity, AreaResponseDto>
                 (await _areaRepository.Create(_mapper.Map<CreateAreaRequestDto, AreaEntity>(createArea), 
                     cancellationToken)));
+
+        [HttpGet()]
+        public async Task<ActionResult<IEnumerable<AreaResponseDto>>> GetAllAreas(CancellationToken cancellationToken) =>
+            Ok(_mapper.Map<IEnumerable<AreaEntity>, IEnumerable<AreaResponseDto>>(await _areaRepository.GetAll(cancellationToken)));
     }
 }
