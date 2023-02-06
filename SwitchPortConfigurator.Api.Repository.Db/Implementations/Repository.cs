@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.Data;
+using SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.Exceptions;
 using SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.Interfaces;
 using SwitchPortConfigurator.Api.Repository.Exceptions;
 using SwitchPortConfigurator.Api.Repository.Interfaces;
@@ -51,20 +52,18 @@ namespace SwitchPortConfigurator.Api.Repository.Db.Implementations
             {
                 _logger.LogWarning(e, "Error add entity: @{TEntity}.", entity);
 
-                DbError dbError;
-
                 try
                 {
-                    dbError = _errorHandlerDb.GetInfoAboutError(e);
+                    DbError dbError = _errorHandlerDb.GetInfoAboutError(e);
+
+                    throw new RepositoryException("Error add entity.", e, dbError.Table, dbError.Fields, dbError.ErrorCode);
                 }
-                catch(Exception eDbError)
+                catch(ErrorHandlerDbException eDbError)
                 {
                     _logger.LogError(eDbError, "Error Handling excetpion Db.");
 
                     throw new RepositoryException("Error add entity.", e);
                 }
-
-                throw new RepositoryException("Error add entity.", e, dbError.Table, dbError.Fields, (int)dbError.ErrorCode);
             }
             catch(Exception e)
             {
