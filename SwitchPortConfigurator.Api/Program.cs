@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SwitchPortConfigurator.Api.AutoMapperProfiles;
 using SwitchPortConfigurator.Api.Repository.Db;
 using SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.Interfaces;
-using SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler.Implementations;
+using SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.PgSqlErrorHandler.Implementations;
 using SwitchPortConfigurator.Api.Repository.Db.Implementations;
 using SwitchPortConfigurator.Api.Repository.Interfaces;
 

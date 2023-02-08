@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SwitchPortConfigurator.Api.Dto\SwitchPortConfigurator.Api.Dto.csproj" />
-    <ProjectReference Include="..\SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler\SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.SqlErrorHandler.csproj" />
+    <ProjectReference Include="..\SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.PgSqlErrorHandler\SwitchPortConfigurator.Api.Repository.Db.ErrorHandlerDb.PgSqlErrorHandler.csproj" />
     <ProjectReference Include="..\SwitchPortConfigurator.Api.Repository.Db\SwitchPortConfigurator.Api.Repository.Db.csproj" />
     <ProjectReference Include="..\SwitchPortConfigurator.Api.Repository\SwitchPortConfigurator.Api.Repository.csproj" />
   </ItemGroup>

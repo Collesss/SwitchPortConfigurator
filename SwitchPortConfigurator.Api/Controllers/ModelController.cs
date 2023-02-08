@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SwitchPortConfigurator.Api.Dto.Manufacturer.Response;
+using SwitchPortConfigurator.Api.Dto.Common.Response;
 using SwitchPortConfigurator.Api.Dto.Model.Request;
 using SwitchPortConfigurator.Api.Dto.Model.Response;
-using SwitchPortConfigurator.Api.Repository.Db.Implementations;
 using SwitchPortConfigurator.Api.Repository.Entities;
 using SwitchPortConfigurator.Api.Repository.Interfaces;
 
@@ -25,6 +24,9 @@ namespace SwitchPortConfigurator.Api.Controllers
         }
 
         [HttpPost()]
+        [ProducesResponseType(typeof(ModelResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(InternalServerErrorResponse), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<ModelResponseDto>> CreateModel(CreateModelRequestDto createModel, CancellationToken cancellationToken) =>
             Ok(_mapper.Map<ModelEntity, ModelResponseDto>
                 (await _modelRepository.Create(_mapper.Map<CreateModelRequestDto, ModelEntity>(createModel),

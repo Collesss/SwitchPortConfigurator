@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SwitchPortConfigurator.Api.Dto.Common.Response;
 using SwitchPortConfigurator.Api.Dto.Location.Request;
 using SwitchPortConfigurator.Api.Dto.Location.Response;
 using SwitchPortConfigurator.Api.Repository.Entities;
@@ -23,6 +24,9 @@ namespace SwitchPortConfigurator.Api.Controllers
         }
 
         [HttpPost()]
+        [ProducesResponseType(typeof(LocationResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(InternalServerErrorResponse), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<LocationResponseDto>> LocationArea(CreateLocationRequestDto createLocation, CancellationToken cancellationToken) =>
             Ok(_mapper.Map<LocationEntity, LocationResponseDto>
                 (await _locationRepository.Create(_mapper.Map<CreateLocationRequestDto, LocationEntity>(createLocation),

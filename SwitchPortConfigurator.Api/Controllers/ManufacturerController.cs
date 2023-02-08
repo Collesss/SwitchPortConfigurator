@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SwitchPortConfigurator.Api.Dto.Common.Response;
 using SwitchPortConfigurator.Api.Dto.Manufacturer.Request;
 using SwitchPortConfigurator.Api.Dto.Manufacturer.Response;
 using SwitchPortConfigurator.Api.Repository.Entities;
@@ -23,6 +24,9 @@ namespace SwitchPortConfigurator.Api.Controllers
         }
 
         [HttpPost()]
+        [ProducesResponseType(typeof(ManufacturerResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BadRequestResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(InternalServerErrorResponse), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<ManufacturerResponseDto>> CreateManufacturer(CreateManufacturerRequestDto createManufacturer, CancellationToken cancellationToken) =>
             Ok(_mapper.Map<ManufacturerEntity, ManufacturerResponseDto>
                 (await _manufacturerRepository.Create(_mapper.Map<CreateManufacturerRequestDto, ManufacturerEntity>(createManufacturer),
