@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchPortConfigurator.WebUI", "SwitchPortConfigurator.WebUI\SwitchPortConfigurator.WebUI.csproj", "{3E02B6D0-5D34-4AA4-9A05-F9598C22404C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchPortConfigurator.Api", "SwitchPortConfigurator.Api\SwitchPortConfigurator.Api.csproj", "{B407BC01-61D6-4242-9D8E-B60904FCDB4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E02B6D0-5D34-4AA4-9A05-F9598C22404C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E02B6D0-5D34-4AA4-9A05-F9598C22404C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E02B6D0-5D34-4AA4-9A05-F9598C22404C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E02B6D0-5D34-4AA4-9A05-F9598C22404C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B407BC01-61D6-4242-9D8E-B60904FCDB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B407BC01-61D6-4242-9D8E-B60904FCDB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B407BC01-61D6-4242-9D8E-B60904FCDB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B407BC01-61D6-4242-9D8E-B60904FCDB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {617433D3-83BF-45AD-AB6B-DE988E83EC57}
+	EndGlobalSection
+EndGlobal
