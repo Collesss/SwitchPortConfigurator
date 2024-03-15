@@ -1,4 +1,11 @@
 using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.EntityFrameworkCore;
+using SwitchPortConfigurator.Api.AutoMapperProfiles;
+using SwitchPortConfigurator.Api.Repository.Db;
+using SwitchPortConfigurator.Api.Repository.Db.Implementations;
+using SwitchPortConfigurator.Api.Repository.Interfaces;
+using SwitchPortConfigurator.Api.SwitchService.Interfaces;
+using SS = SwitchPortConfigurator.Api.SwitchService.Default.Implementations.SwitchService;
 
 namespace SwitchPortConfigurator.Api
 {
@@ -23,6 +30,15 @@ namespace SwitchPortConfigurator.Api
                 // By default, all incoming requests will be authorized according to the default policy.
                 options.FallbackPolicy = options.DefaultPolicy;
             });
+
+
+            builder.Services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
+
+            builder.Services.AddDbContext<RepositoryDbContext>(opts =>
+                opts.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+            builder.Services.AddScoped<ISwitchRepository, SwitchRepository>();
+            builder.Services.AddScoped<ISwitchService, SS>();
 
             var app = builder.Build();
 

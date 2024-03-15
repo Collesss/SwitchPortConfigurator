@@ -5,7 +5,15 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchPortConfigurator.WebUI", "SwitchPortConfigurator.WebUI\SwitchPortConfigurator.WebUI.csproj", "{3E02B6D0-5D34-4AA4-9A05-F9598C22404C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchPortConfigurator.Api", "SwitchPortConfigurator.Api\SwitchPortConfigurator.Api.csproj", "{B407BC01-61D6-4242-9D8E-B60904FCDB4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchPortConfigurator.Api", "SwitchPortConfigurator.Api\SwitchPortConfigurator.Api.csproj", "{B407BC01-61D6-4242-9D8E-B60904FCDB4E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchPortConfigurator.Api.SwitchService", "SwitchPortConfigurator.Api.SwitchService\SwitchPortConfigurator.Api.SwitchService.csproj", "{7CCF61FC-0F8E-44DB-8F1B-57384C31976F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchPortConfigurator.Api.Repository", "SwitchPortConfigurator.Api.Repository\SwitchPortConfigurator.Api.Repository.csproj", "{83625CB1-A30F-49BF-9A41-9F472DB1E138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchPortConfigurator.Api.Repository.Db", "SwitchPortConfigurator.Api.Repository.Db\SwitchPortConfigurator.Api.Repository.Db.csproj", "{7B345FBD-C812-4BEC-882C-AFA5EC098701}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchPortConfigurator.Api.SwitchService.Default", "SwitchPortConfigurator.Api.SwitchService.Default\SwitchPortConfigurator.Api.SwitchService.Default.csproj", "{46E95D2B-4376-4ED1-9A4A-7B8E98370305}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,22 @@ Global
 		{B407BC01-61D6-4242-9D8E-B60904FCDB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B407BC01-61D6-4242-9D8E-B60904FCDB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B407BC01-61D6-4242-9D8E-B60904FCDB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CCF61FC-0F8E-44DB-8F1B-57384C31976F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CCF61FC-0F8E-44DB-8F1B-57384C31976F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CCF61FC-0F8E-44DB-8F1B-57384C31976F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CCF61FC-0F8E-44DB-8F1B-57384C31976F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83625CB1-A30F-49BF-9A41-9F472DB1E138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83625CB1-A30F-49BF-9A41-9F472DB1E138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83625CB1-A30F-49BF-9A41-9F472DB1E138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83625CB1-A30F-49BF-9A41-9F472DB1E138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B345FBD-C812-4BEC-882C-AFA5EC098701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B345FBD-C812-4BEC-882C-AFA5EC098701}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B345FBD-C812-4BEC-882C-AFA5EC098701}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B345FBD-C812-4BEC-882C-AFA5EC098701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46E95D2B-4376-4ED1-9A4A-7B8E98370305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46E95D2B-4376-4ED1-9A4A-7B8E98370305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46E95D2B-4376-4ED1-9A4A-7B8E98370305}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46E95D2B-4376-4ED1-9A4A-7B8E98370305}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
