@@ -2,8 +2,8 @@
 {
     public class SwitchResponseDto : SwitchSummaryResponseDto
     {
-        public IEnumerable<PortResponseDto> Ports { get; set; }
+        public IEnumerable<PortResponseDto> Ports { get; set; } = new List<PortResponseDto>();
 
-        public IEnumerable<VlanResponseDto> Vlans { get; set; }
+        public IEnumerable<VlanResponseDto> Vlans { get; set; } = new List<VlanResponseDto>();
     }
 }

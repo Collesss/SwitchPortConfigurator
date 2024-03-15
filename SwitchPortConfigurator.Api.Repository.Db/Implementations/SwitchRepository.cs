@@ -17,7 +17,7 @@ namespace SwitchPortConfigurator.Api.Repository.Db.Implementations
         {
             try
             {
-                var result = await _repositoryDbContext.Switches.AddAsync(entity, cancellationToken);
+                var result = await _repositoryDbContext.AddAsync(entity, cancellationToken);
 
                 await _repositoryDbContext.SaveChangesAsync(cancellationToken);
 

@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dto\Common\Response\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SwitchPortConfigurator.Api.Repository.Db\SwitchPortConfigurator.Api.Repository.Db.csproj" />
     <ProjectReference Include="..\SwitchPortConfigurator.Api.Repository\SwitchPortConfigurator.Api.Repository.csproj" />
     <ProjectReference Include="..\SwitchPortConfigurator.Api.SwitchService.Default\SwitchPortConfigurator.Api.SwitchService.Default.csproj" />
