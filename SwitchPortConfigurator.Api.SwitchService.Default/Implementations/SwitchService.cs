@@ -3,6 +3,7 @@ using SwitchPortConfigurator.Api.SwitchService.Data;
 using SwitchPortConfigurator.Api.SwitchService.Exceptions;
 using SwitchPortConfigurator.Api.SwitchService.Interfaces;
 using System.Diagnostics;
+using System.Text;
 using Switch = SwitchPortConfigurator.Api.SwitchService.Data.Switch;
 
 namespace SwitchPortConfigurator.Api.SwitchService.Default.Implementations
@@ -16,13 +17,26 @@ namespace SwitchPortConfigurator.Api.SwitchService.Default.Implementations
 
         public async Task<Switch> GetSwitch(string ip, CancellationToken cancellationToken = default)
         {
-            using SshClient sshClient = new SshClient(ip, 10, "", "");
+            using SshClient sshClient = new SshClient(ip, "admin", "4321");
 
             await sshClient.ConnectAsync(cancellationToken);
 
-            SshCommand command = sshClient.RunCommand("");
 
-            Debug.WriteLine(command.Result);
+            byte[] readerBuffer = new byte[1024];
+
+            Stream reader = new MemoryStream(readerBuffer);
+
+            byte[] writerBuffer = new byte[1024];
+
+            Stream writer = new MemoryStream(writerBuffer);
+
+            Shell shell = sshClient.CreateShell(writer, reader, reader);
+
+            shell.Start();
+
+            byte[] command = Encoding.ASCII.GetBytes("system-view\r\n");
+
+            await writer.WriteAsync(command, 0, command.Length, cancellationToken);
 
             sshClient.Disconnect();
 
