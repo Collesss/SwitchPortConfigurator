@@ -12,31 +12,16 @@ namespace SwitchPortConfigurator.Api.SwitchService.Default.Implementations
     {
         
 
-
-        
-
         public async Task<Switch> GetSwitch(string ip, CancellationToken cancellationToken = default)
         {
             using SshClient sshClient = new SshClient(ip, "admin", "4321");
 
             await sshClient.ConnectAsync(cancellationToken);
 
+            ShellStream shellStream = sshClient.CreateShellStream(string.Empty, 0, 0, 0, 0, 1024 * 1024);
 
-            byte[] readerBuffer = new byte[1024];
-
-            Stream reader = new MemoryStream(readerBuffer);
-
-            byte[] writerBuffer = new byte[1024];
-
-            Stream writer = new MemoryStream(writerBuffer);
-
-            Shell shell = sshClient.CreateShell(writer, reader, reader);
-
-            shell.Start();
-
-            byte[] command = Encoding.ASCII.GetBytes("system-view\r\n");
-
-            await writer.WriteAsync(command, 0, command.Length, cancellationToken);
+            shellStream.WriteLine("system-view");
+            shellStream.WriteLine("display interface GigabitEthernet");
 
             sshClient.Disconnect();
 
