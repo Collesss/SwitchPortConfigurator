@@ -29,10 +29,10 @@ namespace SwitchPortConfigurator.Api.SwitchService.Default.Implementations
             shellStream.WriteLine("display interface GigabitEthernet");
             shellStream.Expect(except3);
 
-            Regex regexExcept1 = new Regex("^---- More ----$", RegexOptions.Multiline);
-            Regex regexExcept2 = new Regex(@"^\[[^\[\]]+]$", RegexOptions.Multiline);
+            Regex regexExcept1 = new Regex("---- More ----", RegexOptions.Multiline);
+            Regex regexExcept2 = new Regex(@"\[[^\[\]]+]", RegexOptions.Multiline);
 
-            Regex commonExcept = new Regex(@"^\[[^\[\]]+]$|^---- More ----$", RegexOptions.Multiline);
+            Regex commonExcept = new Regex(@"\[[^\[\]]+]|---- More ----", RegexOptions.Multiline);
 
             StringBuilder sbPortData = new StringBuilder();
 
