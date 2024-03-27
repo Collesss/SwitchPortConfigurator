@@ -3,6 +3,7 @@ using SwitchPortConfigurator.Api.SwitchService.Data;
 using SwitchPortConfigurator.Api.SwitchService.Exceptions;
 using SwitchPortConfigurator.Api.SwitchService.Interfaces;
 using System.Text;
+using System.Text.RegularExpressions;
 using Switch = SwitchPortConfigurator.Api.SwitchService.Data.Switch;
 
 namespace SwitchPortConfigurator.Api.SwitchService.Default.Implementations
@@ -19,22 +20,41 @@ namespace SwitchPortConfigurator.Api.SwitchService.Default.Implementations
 
             ShellStream shellStream = sshClient.CreateShellStream(string.Empty, 0, 0, 0, 0, 1024 * 1024);
             string except1 = "\r\r\n\0******************************************************************************\r\r\n* Copyright (c) 2004-2014 Hangzhou H3C Tech. Co., Ltd. All rights reserved.  *\r\r\n* Without the owner's prior written consent,                                 *\r\r\n* no decompiling or reverse-engineering shall be allowed.                    *\r\r\n******************************************************************************\r\r\n\r\r\n\0<TestSwitch1>";
-            string except1Result = shellStream.Expect(except1);
-
-            
-            shellStream.WriteLine("system-view");
             string except2 = "system-view\r\r\nSystem View: return to User View with Ctrl+Z.\r\r\n[TestSwitch1]";
-            string except2Result = shellStream.Expect(except2);
-
+            string except3 = "display interface GigabitEthernet";
             
+            shellStream.Expect(except1);
+            shellStream.WriteLine("system-view");
+            shellStream.Expect(except2);
             shellStream.WriteLine("display interface GigabitEthernet");
-            shellStream.Expect("display interface GigabitEthernet");
+            shellStream.Expect(except3);
 
-            string except3 = "---- More ----";
-            string except4 = "[TestSwitch1]";
+            Regex regexExcept1 = new Regex("^---- More ----$", RegexOptions.Multiline);
+            Regex regexExcept2 = new Regex(@"^\[[^\[\]]+]$", RegexOptions.Multiline);
+
+            Regex commonExcept = new Regex(@"^\[[^\[\]]+]$|^---- More ----$", RegexOptions.Multiline);
+
+            StringBuilder sbPortData = new StringBuilder();
+
+            do
+            {
+                string result = shellStream.Expect(commonExcept);
+
+                string res1 = commonExcept.Replace(result, string.Empty);
+
+                sbPortData.Append(commonExcept.Replace(result, string.Empty));
+
+                bool @continue = commonExcept.IsMatch(result);
+
+                if (regexExcept1.IsMatch(result))
+                    shellStream.WriteLine(" ");
+                else
+                    break;
+            }
+            while (true);
 
 
-
+            string portData = sbPortData.ToString();
 
             //shellStream.Close();
 
