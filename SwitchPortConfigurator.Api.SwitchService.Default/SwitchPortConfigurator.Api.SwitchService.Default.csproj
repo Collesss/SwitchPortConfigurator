@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SwitchPortConfigurator.Api.Repository\SwitchPortConfigurator.Api.Repository.csproj" />
     <ProjectReference Include="..\SwitchPortConfigurator.Api.SwitchService\SwitchPortConfigurator.Api.SwitchService.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
 ﻿using Renci.SshNet;
+using SwitchPortConfigurator.Api.Repository.Interfaces;
 using SwitchPortConfigurator.Api.SwitchService.Data;
 using SwitchPortConfigurator.Api.SwitchService.Exceptions;
 using SwitchPortConfigurator.Api.SwitchService.Interfaces;
@@ -10,11 +11,17 @@ namespace SwitchPortConfigurator.Api.SwitchService.Default.Implementations
 {
     public class SwitchService : ISwitchService
     {
-        
+        private ISwitchRepository _switchRepository;
 
-        public async Task<Switch> GetSwitch(string ip, CancellationToken cancellationToken = default)
+        public SwitchService(ISwitchRepository switchRepository) 
         {
-            using SshClient sshClient = new SshClient(ip, "admin", "4321");
+            _switchRepository = switchRepository;
+        }
+
+
+        public async Task<Switch> GetSwitch(int id, CancellationToken cancellationToken = default)
+        {
+            using SshClient sshClient = new SshClient("", "admin", "4321");
 
             await sshClient.ConnectAsync(cancellationToken);
 
@@ -63,7 +70,7 @@ namespace SwitchPortConfigurator.Api.SwitchService.Default.Implementations
             throw new SwitchServiceException();
         }
 
-        public Task<SwitchSummary> GetSwitchSummary(string ip, CancellationToken cancellationToken = default)
+        public Task<SwitchSummary> GetSwitchSummary(int id, CancellationToken cancellationToken = default)
         {
             throw new SwitchServiceException();
         }
@@ -71,23 +78,6 @@ namespace SwitchPortConfigurator.Api.SwitchService.Default.Implementations
         public Task SetPortSetting(PortSetting portSetting, CancellationToken cancellationToken = default)
         {
             throw new SwitchServiceException();
-        }
-
-
-        private async Task<string> ReadFull(ShellStream shellStream)
-        {
-            StringBuilder sb = new StringBuilder();
-            
-            while(shellStream.DataAvailable)
-            {
-                byte[] buffer = new byte[1024];
-
-                int len = await shellStream.ReadAsync(buffer, 0, buffer.Length);
-
-                sb.Append(Encoding.ASCII.GetString(buffer, 0, len));
-            }
-
-            return sb.ToString();
         }
     }
 }

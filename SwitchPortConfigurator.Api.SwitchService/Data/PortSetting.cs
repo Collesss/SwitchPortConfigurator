@@ -2,9 +2,13 @@
 {
     public class PortSetting
     {
-        public string SwitchIp { get; set; }
+        public int SwitchId { get; set; }
 
         public string InterfaceName { get; set; }
+
+        public string Description { get; set; }
+
+        public bool Enable { get; set; }
 
         public bool Access {  get; set; }
 

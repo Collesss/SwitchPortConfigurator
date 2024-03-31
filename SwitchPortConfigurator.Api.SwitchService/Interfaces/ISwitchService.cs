@@ -13,9 +13,9 @@ namespace SwitchPortConfigurator.Api.SwitchService.Interfaces
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="Exceptions.SwitchServiceException"></exception>
         /// <returns></returns>
-        Task<SwitchSummary> GetSwitchSummary(string ip, CancellationToken cancellationToken = default);
+        Task<SwitchSummary> GetSwitchSummary(int id, CancellationToken cancellationToken = default);
 
-        Task<Switch> GetSwitch(string ip, CancellationToken cancellationToken = default);
+        Task<Switch> GetSwitch(int id, CancellationToken cancellationToken = default);
 
         Task SetPortSetting(PortSetting portSetting, CancellationToken cancellationToken = default);
     }
